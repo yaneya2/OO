@@ -255,7 +255,7 @@ while running:
                         elif drawing_mode == "line":
                             if start_point is None:
                                 start_point = (col, row)  # (x, y)
-                                fill_cell(row, col, YELLOW)  # Помечаем начальную точку
+                                #fill_cell(row, col, YELLOW)  # Помечаем начальную точку
                             else:
                                 # Рисуем линию от start_point до текущей точки
                                 x0, y0 = start_point
