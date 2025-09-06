@@ -81,9 +81,18 @@ def draw_line(x0, y0, x1, y1, color=None):
     """
     if color is None:
         color = current_color
-
     dx = abs(x1 - x0)
     dy = abs(y1 - y0)
+
+    if dx == 0:
+        for i in range(min(y0, y1), max(y0, y1) + 1):
+            fill_cell(i, x0, color)
+        return
+
+    if dy == 0:
+        for i in range(min(x0, x1), max(x0, x1) + 1):
+            fill_cell(y0, i, color)
+        return
 
     sx = 1 if x0 < x1 else -1
     sy = 1 if y0 < y1 else -1
