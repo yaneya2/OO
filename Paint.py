@@ -62,12 +62,18 @@ def fill_cell(row, col, color=None):
         return True
     return False
 
+def brush(row, col, prev_color, color):
+    """заливка"""
 
-def brush(row, col, color):
     if row < 0 or row >= GRID_SIZE or col < 0 or col >= GRID_SIZE:
         return
-    if filled_cells.get_color(row, col) == color:
-        pass
+    if filled_cells.get_color(row, col) != prev_color:
+        return
+    fill_cell(row, col, color)
+    brush(row + 1, col, prev_color, color)
+    brush(row - 1, col, prev_color, color)
+    brush(row, col  + 1, prev_color ,color)
+    brush(row, col  - 1, prev_color ,color)
 
 def draw_line(x0, y0, x1, y1, color=None):
     """
@@ -249,7 +255,8 @@ while running:
                                 start_point = None
                         elif drawing_mode == "brush":
                             prev_color = filled_cells.get_color(row, col)
-                            pass
+                            brush(row, col, prev_color, current_color)
+
 
 
 
